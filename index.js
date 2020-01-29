@@ -204,9 +204,16 @@ return `The car is a ${carId.car_make} ${carId.car_model}`
  * sortCarInventory takes a single argument:
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
-*/
-function sortCarInventory(/* code here */) {
-  /* code here */
+*/  
+function sortCarInventory(inventory) {
+   function compareValues(key, order = 'asc') {
+     return function innerSort(a, b){
+       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+         return 0;
+       } 
+     }
+   }
+   inventory.sort(compareValues('car_model'));
 }
 
 /**
@@ -218,8 +225,15 @@ function sortCarInventory(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(inventory) {
+   function compareValues(key, order = 'asc') {
+    return function innerSort(a, b){
+      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+        return 0;
+      } 
+    }
+  }
+  inventory.sort(compareValues('car_years'));
 }
 
 /**
@@ -234,8 +248,11 @@ function getModelYears(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(inventory, car_year) {
+ const oldCar = inventory.filter(function(item) {
+   return item.inventory >= car_year;
+ });  
+return oldCar
 }
 
 /**
@@ -249,8 +266,11 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars(inventory) {
+  const germanCars =inventory.filter(function(item){
+    return item.car_make == `Audi`, `Mercedes-Benz`, `BMW`;
+  });
+  return germanCars;
 }
 
 /**
