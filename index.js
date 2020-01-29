@@ -80,23 +80,18 @@ console.log(getName(person));
 */
 
 
-function makeSmartPerson(man) {
-  const myObj ={
-  name:'Suzie',
-  speak:'Hello, my name is " + man.name',
-  
-  sum(num1, num2) {
-    return num1 + num2;
-  }
-
-
- 
+function makeSmartPerson(name) {  
+  return { 
+  name: name,
+  sum: function (num1, num2) {
+  return num1 + num2
+},
+speak: function(){`Hello, my name is ` + name;
+}
+};
 
 
   
-
-
-
 
 
 /*
@@ -154,9 +149,11 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  /* code here */
+  const carInfo = inventory.find((item, index) => {
+    return index === []
+  })
+ return `This is a ${carInfo.car_make} ${carInfo.car_model}`
 }
-
 /**
  * ### Challenge `getLastCarInfo`
  * 
